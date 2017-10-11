@@ -8,8 +8,12 @@ public class Player : MonoBehaviour {
 
 	//Movement
 	public float speed;
-	private Vector3 movement;
-	public Component rigidBody;
+    public float jump;
+    private Vector3 movement;
+	public Rigidbody Rb;
+    public bool grounded = false;
+
+    
 
 	// Use this for initialization
 	void Start ()
@@ -20,12 +24,12 @@ public class Player : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        PlayerMovement();
+    }
 
 	void FixedUpdate()
 	{
-		PlayerMovement();
+		
 	}
 
 	void PlayerMovement()
@@ -35,8 +39,32 @@ public class Player : MonoBehaviour {
 
 		movement = new Vector3(moveHorizontal, 0.0f, 0.0f);
 
-		transform.Translate(movement * speed * Time.deltaTime, Space.World);
+        if(grounded)
+        {
+            Rb.velocity = (movement * speed);
+        }
 
-		print (moveHorizontal);
-	}
+        if (grounded && Input.GetButtonDown("Submit")|| Input.GetButtonDown("Axis 10"))
+        {
+            grounded = false;
+            print ("Great work!");
+            Rb.AddForce(Vector3.up * jump * (Time.deltaTime *1000));
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            grounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            grounded = false;
+        }
+    }
 }
