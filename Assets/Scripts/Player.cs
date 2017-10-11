@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
 	//Movement
 	public float speed;
     public float jump;
+    public float airSpeed;
     private Vector3 movement;
 	public Rigidbody Rb;
     public bool grounded = false;
@@ -23,16 +24,26 @@ public class Player : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
-        PlayerMovement();
+	void Update ()
+    {
+        PlayerAirMovement();
     }
 
 	void FixedUpdate()
 	{
-		
-	}
+        PlayerMovement();
+    }
 
-	void PlayerMovement()
+    void PlayerAirMovement()
+    {
+
+        if (!grounded)
+        {
+            Rb.AddForce(movement * airSpeed);
+        }
+    }
+
+    void PlayerMovement()
 	{
 		float moveHorizontal = Input.GetAxis("Horizontal");
 		float moveVertical = Input.GetAxis("Vertical");
@@ -43,6 +54,8 @@ public class Player : MonoBehaviour {
         {
             Rb.velocity = (movement * speed);
         }
+
+        
 
         if (grounded && Input.GetButtonDown("Submit")|| Input.GetButtonDown("Axis 10"))
         {
