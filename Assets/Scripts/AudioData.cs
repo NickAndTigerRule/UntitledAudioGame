@@ -1,0 +1,95 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent (typeof (AudioSource))]
+public class AudioData : MonoBehaviour {
+
+    AudioSource audioSource;
+
+    private float[] samples = new float[512];
+    private float[] freqBands = new float[8];
+    private float[] bandBuffer = new float[8];
+    private float[] bufferDecrease = new float[8];
+    float[] freqBandMax = new float[8];
+    public static float[] audioBand = new float[8];
+    public static float[] audioBandBuffer = new float[8];
+
+	void Start ()
+    {
+        audioSource = GetComponent<AudioSource>();
+	}
+
+	void Update ()
+    {
+        GetSpectrumData();
+        FrequencyBands();
+        BandBuffer();
+        CreateAudioBands();
+    }
+
+
+    ////////////////////////////////////////////////////////////////
+    ////////////////////////////Functions///////////////////////////
+    ////////////////////////////////////////////////////////////////
+
+    //Get the spectrum data from all samples
+    void GetSpectrumData()
+    {
+        audioSource.GetSpectrumData(samples, 0, FFTWindow.Blackman);
+    }
+
+    void CreateAudioBands()
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            if(freqBands[i] > freqBandMax[i])
+            {
+                freqBandMax[i] = freqBands[i];
+            }
+            audioBand[i] = (freqBands[i] / freqBandMax[i]);
+            audioBandBuffer[i] = (bandBuffer[i] / freqBandMax[i]);
+        }
+    }
+
+    //Split samples into frequency bands
+    void FrequencyBands()
+    {
+        var size = 0;
+        var average = 0f;
+
+        for (int i = 0; i < 8; i++)
+        {
+            int sampleSize = (int)Mathf.Pow(2, i) * 2;
+
+            if(i == 7)
+            {
+                sampleSize += 2;
+            }
+
+            for (int j = 0; j < sampleSize; j++)
+            {
+                average += samples[size] * (size + 1);
+                size++;
+                freqBands[i] = average * 10;
+            }
+        }
+    }
+
+    void BandBuffer()
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            if(freqBands[i] > bandBuffer[i])
+            {
+                bandBuffer[i] = freqBands[i];
+                bufferDecrease[i] = 0.005f;
+            }
+            if(freqBands[i] < bandBuffer[i])
+            {
+                bandBuffer[i] -= bufferDecrease[i];
+                bufferDecrease[i] *= 1.2f;
+            }
+        }
+    }
+}
