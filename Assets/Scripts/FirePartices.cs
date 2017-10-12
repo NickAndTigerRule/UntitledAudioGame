@@ -30,7 +30,7 @@ public class FirePartices : MonoBehaviour {
         if (Input.GetButtonDown("Fire1"))
         {
 
-            var offset = new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z);
+            var offset = new Vector3(player.transform.position.x + 0.5f, player.transform.position.y + 1, player.transform.position.z);
             var projectile = Instantiate(curFire1, offset, transform.rotation);
 
             projectile.GetComponent<Rigidbody>().AddForce(Vector3.right * force);
