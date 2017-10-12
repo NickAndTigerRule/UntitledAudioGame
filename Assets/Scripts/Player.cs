@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 	//Cross Script Reference
-	//public static Player Instance;
+	public static Player Instance;
 
 	//Movement
 	public float speed;
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour {
 	void Start ()
 	{
 		//'Instance' Used in other scripts to reference this.
-		//Instance = this;
+		Instance = this;
 	}
 
 	// Update is called once per frame
