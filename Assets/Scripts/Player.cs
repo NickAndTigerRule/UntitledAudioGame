@@ -55,8 +55,6 @@ public class Player : MonoBehaviour {
             Rb.velocity = (movement * speed);
         }
 
-        
-
         if (grounded && Input.GetButtonDown("Submit")|| Input.GetButtonDown("Axis 10"))
         {
             grounded = false;

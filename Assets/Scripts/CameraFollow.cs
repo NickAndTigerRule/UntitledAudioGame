@@ -21,13 +21,9 @@ public class CameraFollow : MonoBehaviour {
 	}
 	
 	void LateUpdate()
-
 	{
-
 		// Set the position of the camera's transform to be the same as the player's, but offset by the calculated offset distance.
-
 		transform.position = player.transform.position + offset;
-
 	}
 
 	// Update is called once per frame
@@ -36,37 +32,23 @@ public class CameraFollow : MonoBehaviour {
         CameraCulling();
 	}
 
-    void CameraCulling()
+    public void CameraCulling()
     {
         if (LevelCheck[0])
         {
-            cam.cullingMask |= (1 << 8);
-            LevelCheck[1] = false;
-            LevelCheck[2] = false;
-            LevelCheck[3] = false;
+            cam.cullingMask = (1 << 0) | (1 << 8);
         }
         if (LevelCheck[1])
         {
-            cam.cullingMask |= (1 << 8);
-            LevelCheck[0] = false;
-            LevelCheck[2] = false;
-            LevelCheck[3] = false;
+            cam.cullingMask = (1 << 0) | (1 << 9);
         }
         if (LevelCheck[2])
         {
-            cam.cullingMask |= (1 << 8);
-            LevelCheck[1] = false;
-            LevelCheck[0] = false;
-            LevelCheck[3] = false;
+            cam.cullingMask = (1 << 0) | (1 << 10);
         }
         if (LevelCheck[3])
         {
-            cam.cullingMask |= (1 << 8);
-            LevelCheck[1] = false;
-            LevelCheck[2] = false;
-            LevelCheck[0] = false;
+            cam.cullingMask = (1 << 0) | (1 << 11);
         }
-
-
     }
 }
