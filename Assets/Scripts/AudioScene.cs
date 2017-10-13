@@ -18,8 +18,28 @@ public class AudioScene : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		
-	}
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            print("cool");
+            WorldChangeSpace();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            WorldChangeDark();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            WorldChangeNature();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            WorldChangeSweet();
+        }
+
+    }
 
     public void WorldChangeSpace()
     {
