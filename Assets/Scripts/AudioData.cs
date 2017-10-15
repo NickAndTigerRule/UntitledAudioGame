@@ -12,10 +12,15 @@ public class AudioData : MonoBehaviour {
     private float[] bandBuffer = new float[8];
     private float[] bufferDecrease = new float[8];
     float[] freqBandMax = new float[8];
+
     public static float[] audioBand = new float[8];
     public static float[] audioBandBuffer = new float[8];
 
-	void Start ()
+    public static float amplitude;
+    public static float amplitudeBuffer;
+    public float ampHighest;
+
+    void Start ()
     {
         audioSource = GetComponent<AudioSource>();
 	}
@@ -26,6 +31,7 @@ public class AudioData : MonoBehaviour {
         FrequencyBands();
         BandBuffer();
         CreateAudioBands();
+        GetAmplitude();
     }
 
 
@@ -91,5 +97,24 @@ public class AudioData : MonoBehaviour {
                 bufferDecrease[i] *= 1.2f;
             }
         }
+    }
+
+    void GetAmplitude()
+    {
+        float curAmp = 0;
+        float curAmpBuffer = 0;
+
+        for (int i = 0; i < 8; i++)
+        {
+            curAmp += audioBand[i];
+            curAmpBuffer += audioBandBuffer[i];
+        }
+        if(curAmp > ampHighest)
+        {
+            ampHighest = curAmp;
+        }
+        amplitude = curAmp / ampHighest;
+        amplitudeBuffer = curAmpBuffer / ampHighest;
+
     }
 }

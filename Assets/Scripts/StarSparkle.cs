@@ -15,6 +15,8 @@ public class StarSparkle : MonoBehaviour {
 
     public GameObject[] stars;
     public GameObject earth;
+
+    public Vector3 minVector;
 	// Use this for initialization
 	void Start () {
 		
@@ -23,7 +25,14 @@ public class StarSparkle : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         SetStarBand();
-        earth.transform.localScale = new Vector3(AudioData.audioBandBuffer[band], AudioData.audioBandBuffer[band], AudioData.audioBandBuffer[band]);
+        if(AudioData.amplitudeBuffer >= 0.6f)
+        {
+            earth.transform.localScale = new Vector3(AudioData.amplitudeBuffer, AudioData.amplitudeBuffer, AudioData.amplitudeBuffer);
+        }
+        else
+        {
+            earth.transform.localScale = minVector;
+        }
     }
 
     void SetStarBand()
