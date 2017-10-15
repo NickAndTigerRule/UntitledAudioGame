@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent (typeof (AudioSource))]
 public class AudioData : MonoBehaviour {
 
-    AudioSource audioSource;
+    public static AudioData Instance;
+    public AudioSource audioSource;
 
     private float[] samples = new float[512];
     private float[] freqBands = new float[8];
@@ -16,22 +17,40 @@ public class AudioData : MonoBehaviour {
     public static float[] audioBand = new float[8];
     public static float[] audioBandBuffer = new float[8];
 
-    public static float amplitude;
-    public static float amplitudeBuffer;
+    public float amplitude;
+    public float amplitudeBuffer;
     public float ampHighest;
 
     void Start ()
     {
-        audioSource = GetComponent<AudioSource>();
-	}
+        Instance = this;
+        if(AudioScene.Instance.currentAud != null)
+        {
+            audioSource = AudioScene.Instance.currentAud;
+        }
+        else
+        {
+            Invoke("GetLate", 1f);
+        }
+        
+
+    }
 
 	void Update ()
     {
-        GetSpectrumData();
-        FrequencyBands();
-        BandBuffer();
-        CreateAudioBands();
-        GetAmplitude();
+        if(audioSource != null)
+        {
+            GetSpectrumData();
+            FrequencyBands();
+            BandBuffer();
+            CreateAudioBands();
+            GetAmplitude();
+        }
+        
+    }
+    void GetLate()
+    {
+        audioSource = AudioScene.Instance.currentAud;
     }
 
 
@@ -42,6 +61,13 @@ public class AudioData : MonoBehaviour {
     //Get the spectrum data from all samples
     void GetSpectrumData()
     {
+        //ASk
+        //IAN
+        //IF
+        //THIS
+        //IS 
+        //TERRIBLE
+        audioSource = AudioScene.Instance.currentAud;
         audioSource.GetSpectrumData(samples, 0, FFTWindow.Blackman);
     }
 

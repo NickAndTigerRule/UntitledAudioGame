@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StarSparkle : MonoBehaviour {
+public class StarSparkle : MonoBehaviour
+{
 
     public int band;
     public int band1;
@@ -11,61 +12,71 @@ public class StarSparkle : MonoBehaviour {
     public int band4;
     public int band5;
     public int band6;
-    
+
 
     public GameObject[] stars;
     public GameObject earth;
 
     public Vector3 minVector;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        earth.transform.localScale = new Vector3(AudioData.Instance.amplitudeBuffer, AudioData.Instance.amplitudeBuffer, AudioData.Instance.amplitudeBuffer);
         SetStarBand();
-        if(AudioData.amplitudeBuffer >= 0.6f)
-        {
-            earth.transform.localScale = new Vector3(AudioData.amplitudeBuffer, AudioData.amplitudeBuffer, AudioData.amplitudeBuffer);
-        }
-        else
-        {
-            earth.transform.localScale = minVector;
-        }
+        //if (AudioData.Instance.amplitudeBuffer >= 0.6f)
+        //{
+            
+        //}
+       // else
+       // {
+          //  earth.transform.localScale = minVector;
+        //}
     }
 
     void SetStarBand()
     {
         for (int i = 0; i < stars.Length; i++)
         {
-            if (stars[i].GetComponent<ParticleSystem>().startSize == 0.8f)
+            if (AudioData.audioBandBuffer[band] > 0f)
             {
-                stars[i].transform.localScale = new Vector3(AudioData.audioBandBuffer[band], AudioData.audioBandBuffer[band], AudioData.audioBandBuffer[band]);
-            }
-            if (stars[i].GetComponent<ParticleSystem>().startSize == 0.7f)
-            {
-                stars[i].transform.localScale = new Vector3(AudioData.audioBandBuffer[band1], AudioData.audioBandBuffer[band1], AudioData.audioBandBuffer[band1]);
-            }
-            if (stars[i].GetComponent<ParticleSystem>().startSize == 0.6f)
-            {
-                stars[i].transform.localScale = new Vector3(AudioData.audioBandBuffer[band2], AudioData.audioBandBuffer[band2], AudioData.audioBandBuffer[band2]);
-            }
-            if (stars[i].GetComponent<ParticleSystem>().startSize == 0.5f)
-            {
-                stars[i].transform.localScale = new Vector3(AudioData.audioBandBuffer[band3], AudioData.audioBandBuffer[band3], AudioData.audioBandBuffer[band3]);
-            }
-            if (stars[i].GetComponent<ParticleSystem>().startSize == 0.4f)
-            {
-                stars[i].transform.localScale = new Vector3(AudioData.audioBandBuffer[band4], AudioData.audioBandBuffer[band4], AudioData.audioBandBuffer[band4]);
-            }
-            if (stars[i].GetComponent<ParticleSystem>().startSize == 0.3f)
-            {
-                stars[i].transform.localScale = new Vector3(AudioData.audioBandBuffer[band5], AudioData.audioBandBuffer[band5], AudioData.audioBandBuffer[band5]);
-            }
-            if (stars[i].GetComponent<ParticleSystem>().startSize == 0.2f)
-            {
-                stars[i].transform.localScale = new Vector3(AudioData.audioBandBuffer[band6], AudioData.audioBandBuffer[band6], AudioData.audioBandBuffer[band6]);
+
+
+                if (stars[i].GetComponent<ParticleSystem>().startSize == 0.8f)
+                {
+                    stars[i].transform.localScale = new Vector3(AudioData.audioBandBuffer[band], AudioData.audioBandBuffer[band], AudioData.audioBandBuffer[band]);
+                }
+                if (stars[i].GetComponent<ParticleSystem>().startSize == 0.7f)
+                {
+                    stars[i].transform.localScale = new Vector3(AudioData.audioBandBuffer[band1], AudioData.audioBandBuffer[band1], AudioData.audioBandBuffer[band1]);
+                }
+                if (stars[i].GetComponent<ParticleSystem>().startSize == 0.6f)
+                {
+                    stars[i].transform.localScale = new Vector3(AudioData.audioBandBuffer[band2], AudioData.audioBandBuffer[band2], AudioData.audioBandBuffer[band2]);
+                }
+                if (stars[i].GetComponent<ParticleSystem>().startSize == 0.5f)
+                {
+                    stars[i].transform.localScale = new Vector3(AudioData.audioBandBuffer[band3], AudioData.audioBandBuffer[band3], AudioData.audioBandBuffer[band3]);
+                }
+                if (stars[i].GetComponent<ParticleSystem>().startSize == 0.4f)
+                {
+                    stars[i].transform.localScale = new Vector3(AudioData.audioBandBuffer[band4], AudioData.audioBandBuffer[band4], AudioData.audioBandBuffer[band4]);
+                }
+                if (stars[i].GetComponent<ParticleSystem>().startSize == 0.3f)
+                {
+                    stars[i].transform.localScale = new Vector3(AudioData.audioBandBuffer[band5], AudioData.audioBandBuffer[band5], AudioData.audioBandBuffer[band5]);
+                }
+                if (stars[i].GetComponent<ParticleSystem>().startSize == 0.2f)
+                {
+                    stars[i].transform.localScale = new Vector3(AudioData.audioBandBuffer[band6], AudioData.audioBandBuffer[band6], AudioData.audioBandBuffer[band6]);
+                }
+
             }
         }
     }
