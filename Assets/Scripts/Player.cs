@@ -99,7 +99,7 @@ public class Player : MonoBehaviour {
 
 
 
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetButtonDown ("Jump")) {
 			if (grounded || onWall) {
 				if (onWall) {
 					xVelocity = -maxSpeed;
