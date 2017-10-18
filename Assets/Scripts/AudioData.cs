@@ -24,7 +24,7 @@ public class AudioData : MonoBehaviour {
     void Start ()
     {
         Instance = this;
-        if(AudioScene.Instance.currentAud != null)
+        /*if(AudioScene.Instance.currentAud != null)
         {
             audioSource = AudioScene.Instance.currentAud;
         }
@@ -32,6 +32,7 @@ public class AudioData : MonoBehaviour {
         {
             Invoke("GetLate", 1f);
         }
+        */
         
 
     }

@@ -39,6 +39,7 @@ public class Player : MonoBehaviour {
     {
         PlayerAirMovement();
 		PlayerMovement();
+		print ("cool");
     }
 
     void PlayerAirMovement()

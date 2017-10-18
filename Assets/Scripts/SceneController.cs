@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour {
 
-    public GameObject MainMenu;
+
     public GameObject WorldObject;
 
     public string SoundCloudURL;
@@ -23,7 +23,7 @@ public class SceneController : MonoBehaviour {
 
     public void PlayGame()
     {
-        MainMenu.SetActive(false);
+
         WorldObject.SetActive(true);
     }
 
