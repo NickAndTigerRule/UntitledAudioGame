@@ -23,7 +23,9 @@ public class Player : MonoBehaviour {
 	public float xVelocity;
 	public float gravity;
 	public bool jumping;
-    
+
+	//Collectables
+	public int PickUps = 0;
 
 	// Use this for initialization
 	void Start ()
@@ -40,13 +42,12 @@ public class Player : MonoBehaviour {
     }
 
     void PlayerAirMovement()
-    {
+	{
 
-        if (!grounded)
-        {
-            //Rb.AddForce(movement * airSpeed);
-        }
-    }
+		if (!grounded) {
+			//Rb.AddForce(movement * airSpeed);
+		}
+	}
 
     void PlayerMovement()
 	{
