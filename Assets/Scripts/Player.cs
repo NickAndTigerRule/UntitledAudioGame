@@ -7,13 +7,22 @@ public class Player : MonoBehaviour {
 	public static Player Instance;
 
 	//Movement
-	public float speed;
+	public float maxSpeed;
+	public float acceleration;
     public float jump;
     public float airSpeed;
     private Vector3 movement;
 	public Rigidbody Rb;
     public bool grounded = false;
+	public bool onWall = false;
 
+
+	public float passiveHeight;
+	public float jumpForce;
+	public float yVelocity;
+	public float xVelocity;
+	public float gravity;
+	public bool jumping;
     
 
 	// Use this for initialization
@@ -27,11 +36,7 @@ public class Player : MonoBehaviour {
 	void Update ()
     {
         PlayerAirMovement();
-    }
-
-	void FixedUpdate()
-	{
-        PlayerMovement();
+		PlayerMovement();
     }
 
     void PlayerAirMovement()
@@ -39,35 +44,95 @@ public class Player : MonoBehaviour {
 
         if (!grounded)
         {
-            Rb.AddForce(movement * airSpeed);
+            //Rb.AddForce(movement * airSpeed);
         }
     }
 
     void PlayerMovement()
 	{
-		float moveHorizontal = Input.GetAxis("Horizontal");
-		float moveVertical = Input.GetAxis("Vertical");
+		
 
-		movement = new Vector3(moveHorizontal, 0.0f, 0.0f);
+		if (xVelocity < maxSpeed) {
+			xVelocity += acceleration * Time.deltaTime;
+		}
 
-        if(grounded)
-        {
-            Rb.velocity = (movement * speed);
-        }
 
-        if (grounded && Input.GetButtonDown("Submit")|| Input.GetButtonDown("Axis 10"))
-        {
-            grounded = false;
-            print ("Great work!");
-            Rb.AddForce(Vector3.up * jump * (Time.deltaTime *1000));
-        }
+
+		//Adjusting the Y position of the character
+		if (!grounded) {
+			if (!onWall) {
+				yVelocity -= gravity * Time.deltaTime;
+				transform.position = new Vector3 (transform.position.x, transform.position.y +yVelocity, transform.position.z);
+			}
+		}
+
+		Ray ray = new Ray (transform.position, Vector3.down);
+		RaycastHit hit = new RaycastHit ();
+		if (Physics.Raycast (ray, out hit)) {
+			if (hit.distance <= passiveHeight) {
+				grounded = true;
+				transform.position = new Vector3 (transform.position.x, hit.point.y + passiveHeight, transform.position.z);
+				yVelocity = 0;
+			} else {
+				grounded = false;
+			}
+		}
+
+		//Raycasting to the wall
+		ray = new Ray (transform.position, Vector3.right);
+		hit = new RaycastHit ();
+		if (Physics.Raycast (ray, out hit)) {
+			if (hit.distance <= transform.localScale.x) {
+				onWall = true;
+				//transform.position = new Vector3 (transform.position.x, hit.point.y + passiveHeight, transform.position.z);
+				yVelocity = 0;
+			} else {
+				onWall = false;
+			}
+		}
+
+
+		//adding the velocity
+		if (onWall) {
+			xVelocity = 0;
+		}
+
+
+
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			if (grounded || onWall) {
+				if (onWall) {
+					xVelocity = -maxSpeed;
+				}
+				yVelocity = jumpForce;
+				transform.position = new Vector3 (transform.position.x, transform.position.y +yVelocity, transform.position.z);
+				grounded = false;
+			}
+
+		}
+
+
+		Vector3 velocity = new Vector3(xVelocity, 0.0f, 0.0f);
+		transform.position += velocity * Time.deltaTime;
+
+
+
+
+
+
+        //if (grounded && Input.GetButtonDown("Submit")|| Input.GetButtonDown("Axis 10"))
+        //{
+        //    grounded = false;
+
+        //    Rb.AddForce(Vector3.up * jump * (Time.deltaTime *1000));
+        //}
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if(collision.gameObject.CompareTag("Ground"))
         {
-            grounded = true;
+            //grounded = true;
         }
     }
 
@@ -75,7 +140,7 @@ public class Player : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            grounded = false;
+            //grounded = false;
         }
     }
 }
