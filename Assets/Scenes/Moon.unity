@@ -263,7 +263,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 256
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -594,6 +594,68 @@ MonoBehaviour:
   MainMenu: {fileID: 0}
   WorldObject: {fileID: 1830948422}
   SoundCloudURL: https://soundcloud.com/user-487135366
+--- !u!1001 &1019761302
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4507769578379732, guid: b4a07a79bdd646c44a51a68727258b7d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -18.370758
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507769578379732, guid: b4a07a79bdd646c44a51a68727258b7d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -41.703033
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507769578379732, guid: b4a07a79bdd646c44a51a68727258b7d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 210
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507769578379732, guid: b4a07a79bdd646c44a51a68727258b7d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507769578379732, guid: b4a07a79bdd646c44a51a68727258b7d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.49185473
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507769578379732, guid: b4a07a79bdd646c44a51a68727258b7d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507769578379732, guid: b4a07a79bdd646c44a51a68727258b7d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.87067735
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507769578379732, guid: b4a07a79bdd646c44a51a68727258b7d, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507769578379732, guid: b4a07a79bdd646c44a51a68727258b7d, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -58.925003
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490717661787254, guid: b4a07a79bdd646c44a51a68727258b7d, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490717661787254, guid: b4a07a79bdd646c44a51a68727258b7d, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4924472695346526, guid: b4a07a79bdd646c44a51a68727258b7d, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737299456204782, guid: b4a07a79bdd646c44a51a68727258b7d, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b4a07a79bdd646c44a51a68727258b7d, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1085443674
 Prefab:
   m_ObjectHideFlags: 0
@@ -607,7 +669,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4047106652553118, guid: 6584a16dc42b5384d9f5f874d4e6c995, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.71
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4047106652553118, guid: 6584a16dc42b5384d9f5f874d4e6c995, type: 2}
       propertyPath: m_LocalPosition.z
@@ -794,7 +856,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294963711
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: f7dff2bcac6a9064da6a55df194f5b22, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
