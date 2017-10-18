@@ -8,6 +8,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Nick.unity
     guid: 424b832e70b19dc4c8052edf0f68e767
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/World.unity
     guid: 7f1db087a7dce0c46a9c2f11ca0488fe
