@@ -85,7 +85,7 @@ public class Player : MonoBehaviour {
 		hit = new RaycastHit ();
 		if (Physics.Raycast (ray, out hit)) {
 			if (hit.distance <= transform.localScale.x) {
-				onWall = true;
+				//onWall = true;
 				//transform.position = new Vector3 (transform.position.x, hit.point.y + passiveHeight, transform.position.z);
 				yVelocity = 0;
 			} else {
@@ -103,7 +103,8 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetButtonDown ("Jump")) {
 			if (grounded || onWall) {
-				if (onWall) {
+
+                if (onWall) {
 					xVelocity = -maxSpeed;
 				}
 				yVelocity = jumpForce;

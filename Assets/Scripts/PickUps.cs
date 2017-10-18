@@ -23,7 +23,6 @@ public class PickUps : MonoBehaviour {
 		if (Collider.gameObject.CompareTag("Player")) 
 		{
 			Player.Instance.PickUps += 1;
-			print(Player.Instance.PickUps);
 			Destroy(gameObject);
 		}
 	}

@@ -32,12 +32,5 @@ public class SceneController : MonoBehaviour {
         Application.OpenURL(SoundCloudURL);
     }
 
-    public void QuitGame()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) == true)
-        {
-            Application.Quit();
-            print("Quit");
-        }
-    }
+    
 }
